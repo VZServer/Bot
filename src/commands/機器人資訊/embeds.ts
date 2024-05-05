@@ -9,7 +9,7 @@ export default (client: Client<true>) => {
     .setTitle(`${client.user?.username} Info`)
     .addFields(
       // { name: '\u200B', value: '\u200B' }  // empty field,
-      { name: 'Version', value: gitRev.tag() },
+      { name: '版本', value: gitRev.tag() },
     )
     .setFooter({ text: dateFormat(dayjs().toDate()) })
 }
