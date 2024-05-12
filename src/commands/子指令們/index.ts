@@ -1,5 +1,5 @@
 import { ChatInputCommandInteraction, SlashCommandBuilder } from 'discord.js'
-import { SelfInfo, SelfBotInfo, GuildInfo } from './subCommands'
+import { SelfInfo, SelfBotInfo, GuildInfo, PlayerInfo } from './subCommands'
 
 export const command = new SlashCommandBuilder()
   .setName('資訊')
@@ -7,6 +7,7 @@ export const command = new SlashCommandBuilder()
   .addSubcommand((sub) => sub.setName('本機器人').setDescription('查看本機器人的身分證uwu'))
   .addSubcommand((sub) => sub.setName('您個人').setDescription('查看您自己的身分證uwu'))
   .addSubcommand((sub) => sub.setName('群組').setDescription('查看本群組的戶口名簿uwu'))
+  .addSubcommand((sub) => sub.setName('玩家資訊').setDescription('看看別人的正版Minecraft ID資訊'))
 
 export const action = async (ctx: ChatInputCommandInteraction) => {
   const cmdName = ctx.options.getSubcommand()
@@ -22,6 +23,9 @@ export const action = async (ctx: ChatInputCommandInteraction) => {
     
     case '群組':
       await GuildInfo(ctx)
+      break
+    case '玩家資訊':
+      await PlayerInfo(ctx)
       break
   }
 }
